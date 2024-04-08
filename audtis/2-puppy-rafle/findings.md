@@ -98,6 +98,29 @@ To fix this, we should have the `PuppyRaffle::refund` function update the `playe
     }
 ```
 
+## [H-2] Weak randomness in `PuppyRaffle::selectWinner` allows anyone to choose winner
+
+### Description
+
+Hashing `msg.sender`, `block.timestamp`, `block.difficulty` together creates a predictable final number. A predictable number is not a good random number. Malicious users can manipulate these values or know them ahead of time to choose the winner of the raffle themselves. 
+
+### Impact
+
+Any user can choose the winner of the raffle, winning the money and selecting the "rarest" puppy, essentially making it such that all puppies have the same rarity, since you can choose the puppy. 
+
+### Proof of Concept
+
+There are a few attack vectors here. 
+
+1. Validators can know ahead of time the `block.timestamp` and `block.difficulty` and use that knowledge to predict when / how to participate. See the [solidity blog on prevrando](https://soliditydeveloper.com/prevrandao) here. `block.difficulty` was recently replaced with `prevrandao`.
+2. Users can manipulate the `msg.sender` value to result in their index being the winner.
+
+Using on-chain values as a randomness seed is a [well-known attack vector](https://betterprogramming.pub/how-to-generate-truly-random-numbers-in-solidity-and-blockchain-9ced6472dbdf) in the blockchain space.
+
+### Recommended Mitigation
+
+Consider using an oracle for your randomness like [Chainlink VRF](https://docs.chain.link/vrf/v2/introduction).
+
 ## [M-1] Looping through players array to check for duplicates in `PuppyRaffle:enterRaffle` is a potential Denial of Service (DoS) attack, incrementing gas costs for future entrants.
 
 ### Description
