@@ -1,4 +1,4 @@
-# smart-contract-security
+# Smart Contract Security
 
 ## Rekt test
 Before you go to audit must pass [Rekt Test](https://blog.trailofbits.com/2023/08/14/can-you-pass-the-rekt-test/).
