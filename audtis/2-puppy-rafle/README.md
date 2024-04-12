@@ -30,52 +30,52 @@ userBalance[UserA] = 0 ether
 contract balance = 0 ether
 UserA: 10 ether
 
-### Reentrancy Scenario - Victim
+### Reentrancy Scenario - victim
 
-1. Victim deposits 5 eth.
+1. victim deposits 5 ether.
 
 contract balance = 5 ether
-UserBalance[Victim] = 5 ether
-Victim: -5 ether
+userBalance[victim] = 5 ether
+victim: -5 ether
 
-2. Attacker call attack function.
+2. Attacker calls attack function.
 
-a. Attacker deposit 1 ether
+a. Attacker deposit 1 ether.
 
-UserBalance[Victim] = 5 ether
-UserBalance[attacker] = 1 ether
+userBalance[victim] = 5 ether
+userBalance[attacker] = 1 ether
 contract balance = 6 ether
-Victim: -5 ether
+victim: -5 ether
 Attacker: -1 ether
 
-b. Attacker call withdrawBalance function.
+b. Attacker calls withdrawBalance function.
 
 c. In the middle of withdrawBalance function, the receive function is triggered (call back).
 
-UserBalance[Victim] = 5 ether
-UserBalance[attacker] = 1 ether
+userBalance[victim] = 5 ether
+userBalance[attacker] = 1 ether
 contract balance = 5 ether
-Victim: -5 ether
+victim: -5 ether
 Attacker: 0 ether
 
 d. Contract attacker, re enters contract and calls withdrawBalance again.
 
 e. In the middle of withdrawBalance function, the receive function is triggered (call back).
 
-UserBalance[Victim] = 5 ether
-UserBalance[attacker] = 1 ether
+userBalance[victim] = 5 ether
+userBalance[attacker] = 1 ether
 contract balance = 4 ether
-Victim: -5 ether
+victim: -5 ether
 Attacker: 1 ether
 
-f. Only after we steal all the money will the user balance be updated to Zero.
+f. Only after we steal all the money will the user balance be updated to zero.
 
 ```javascript
 userBalance[msg.sender] = 0;
 ```
 
-UserBalance[Victim] = 5 ether
-UserBalance[attacker] = 0 ether
+userBalance[victim] = 5 ether
+userBalance[attacker] = 0 ether
 contract balance = 0 ether
-Victim: -5 ether
+victim: -5 ether
 Attacker: 5 ether
