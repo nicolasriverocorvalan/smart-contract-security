@@ -72,3 +72,56 @@ Cyfrin Updraft
 * `forge test --mt testReentrancyRefund  -vvv`
 * `slither .`
 * `aderyn --root .`
+
+## Smart Contract Devops
+
+* ERC-2335: Keystore
+
+### Multi-sig wallet
+
+* Is a smart contract that governs transactions. These can be setup so that they require several people to sign a transaction for it to go though.
+* You can customize these so that any X number of people are required to sign before a transaction is submitted out of Y. Example, if a 3 people are needed to sign out of a possible 5 people, this is a known as "3-of-5 wallet".
+* Weak support for web3 apps.
+* Gas cost.
+
+### Social Recovery
+
+* There is a single "signing key" that can be used to approve transactions.
+* There is a set of at least 3 (or much higher number) of "guardians", of which a majority can cooperate to change the signing key of the account.
+* Users could also use a Shamir backup, similar to social recovery. You give out "shares" of your key to trusted users, where you can recovery your key  when the shares are combined. A recovery share is usually a sequence of 20/33 English words carrying a part of the cryptographic secret.
+
+### Tools
+
+#### Monitoring
+
+- [Forta](https://www.youtube.com/watch?v=42RcaQ8YTzQ)
+- [Pessimistic Spotter](https://spotter.pessimistic.io/#form)
+- [OZ Defender](https://defender.openzeppelin.com/#/sentinel)
+
+#### Risk economics
+
+- [Gauntlet](https://www.gauntlet.xyz/)
+- [Chaos Labs](https://chaoslabs.xyz/)
+
+#### Incident Response
+
+- [SEAL](https://form.typeform.com/to/jJoH2ktE?typeform-source=securityalliance.org)
+  - [SEAL Drills](https://securityalliance.notion.site/Live-Scenario-Documentation-520e7db48e2143f7bc41b729fb219996)
+  - [Wargames](https://form.typeform.com/to/jJoH2ktE?typeform-source=securityalliance.org)
+  - [Safe Harbor](https://github.com/security-alliance/safe-harbor)
+  - [SEAL 911](https://t.me/seal_911_bot)
+
+#### Bug bounties platforms
+
+- [Immunefi](https://immunefi.com/)
+- [Hats Finance](https://hats.finance/)
+
+#### Blockchain sleuthing
+
+- [OpenChain](https://openchain.xyz/)
+- [Phalcon](https://phalcon.xyz/)
+- [Tenderly](https://tenderly.co/)
+- [Metadoc](https://blocksec.com/metadock)
+- [Dune analytics](https://dune.com/browse/dashboards)
+- [GhostLogs](https://ghostlogs.xyz/)
+- [shadow.xyz](https://www.shadow.xyz/)
