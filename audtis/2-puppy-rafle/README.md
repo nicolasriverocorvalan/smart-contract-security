@@ -3,6 +3,16 @@
 ## Cheat Sheets
 * `forge inspect PuppyRaffle methods`
 
+```javascript
+# chisel 
+Welcome to Chisel! Type `!help` to show available commands.
+➜ type(uint64).max
+Type: uint64
+├ Hex: 0xffffffffffffffff
+├ Hex (full word): 0x000000000000000000000000000000000000000000000000ffffffffffffffff
+└ Decimal: 18446744073709551615
+```
+
 ## Attack Scenarios
 
 ### Normal Scenario - UserA

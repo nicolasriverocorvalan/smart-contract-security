@@ -136,11 +136,34 @@ contract PuppyRaffle is ERC721, Ownable {
         uint256 totalAmountCollected = players.length * entranceFee;
         uint256 prizePool = (totalAmountCollected * 80) / 100;
         uint256 fee = (totalAmountCollected * 20) / 100;
-        totalFees = totalFees + uint64(fee);
+        // @audit averflow, newer version of solidity, bigger units
+        // @audit unsafe cast of uint256 to uint64
+        /*
+            ➜ uint64 myuint64 = type(uint64).max
+            ➜ myuint64
+            Type: uint64
+            ├ Hex: 0xffffffffffffffff
+            ├ Hex (full word): 0x000000000000000000000000000000000000000000000000ffffffffffffffff
+            └ Decimal: 18446744073709551615
 
+            ➜ uint256 twentyEth = 20e18;
+            ➜ twentyEth
+            Type: uint256
+            ├ Hex: 0x000000000000000000000000000000000000000000000001158e460913d00000
+            ├ Hex (full word): 0x000000000000000000000000000000000000000000000001158e460913d00000
+            └ Decimal: 20000000000000000000
+
+            ➜ myuint64 = uint64(twentyEth)
+            Type: uint64
+            ├ Hex: 0x158e460913d00000
+            ├ Hex (full word): 0x000000000000000000000000000000000000000000000000158e460913d00000
+            └ Decimal: 1553255926290448384 (truncated!)
+        */
+        totalFees = totalFees + uint64(fee);
         uint256 tokenId = totalSupply();
 
         // We use a different RNG calculate from the winnerIndex to determine rarity
+        // @audit randomness
         uint256 rarity = uint256(keccak256(abi.encodePacked(msg.sender, block.difficulty))) % 100;
         if (rarity <= COMMON_RARITY) {
             tokenIdToRarity[tokenId] = COMMON_RARITY;
@@ -150,9 +173,13 @@ contract PuppyRaffle is ERC721, Ownable {
             tokenIdToRarity[tokenId] = LEGENDARY_RARITY;
         }
 
-        delete players;
-        raffleStartTime = block.timestamp;
-        previousWinner = winner;
+        delete players; // e resseting players array
+        raffleStartTime = block.timestamp; // e reset the raffle start time
+        previousWinner = winner; // e vanity, doesn't matter
+
+        // @audit possible reentrancy
+        // q what if the winner is a smart contract with a fallback function that will fail?
+        // @udit the winner wouldn't get the money if their fallback was messed up!
         (bool success,) = winner.call{value: prizePool}("");
         require(success, "PuppyRaffle: Failed to send prize pool to winner");
         _safeMint(winner, tokenId);
@@ -160,6 +187,8 @@ contract PuppyRaffle is ERC721, Ownable {
 
     /// @notice this function will withdraw the fees to the feeAddress
     function withdrawFees() external {
+        // @audit is it difficult to withdraw fees if there are active players?
+        // @audit mishandling ETH
         require(address(this).balance == uint256(totalFees), "PuppyRaffle: There are currently players active!");
         uint256 feesToWithdraw = totalFees;
         totalFees = 0;

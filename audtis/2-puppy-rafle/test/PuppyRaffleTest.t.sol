@@ -266,7 +266,17 @@ contract PuppyRaffleTest is Test {
 
         console.log("ending attacker contract balance: ", address(attacker).balance);
         console.log("ending contract balance: ", address(puppyRaffle).balance);
-    }    
+    }
+
+    // @audit is it difficult to withdraw fees if there are active players?
+    function testCantSendMoneyToRaffle() public {
+        address sender = makeAddr("sender");
+        vm.deal(sender, 1 ether);
+        vm.expectRevert();
+        vm.prank(sender);
+        (bool success,) = payable(address(puppyRaffle)).call{value: 1 ether}("");
+        require(success, "failed to send money to raffle");
+    }
 }
 
 contract ReentrancyAttacker {
