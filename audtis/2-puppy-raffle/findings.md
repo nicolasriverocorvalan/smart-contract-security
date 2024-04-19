@@ -247,6 +247,23 @@ Lock up pragma versions.
 + pragma solidity 0.7.6;
 ```
 
+## [I-4] Zero address validation
+
+### Description
+
+The `PuppyRaffle` contract does not validate that the `feeAddress` is not the zero address. This means that the `feeAddress` could be set to the zero address, and fees would be lost.
+
+```
+PuppyRaffle.constructor(uint256,address,uint256)._feeAddress (src/PuppyRaffle.sol#57) lacks a zero-check on :
+                - feeAddress = _feeAddress (src/PuppyRaffle.sol#59)
+PuppyRaffle.changeFeeAddress(address).newFeeAddress (src/PuppyRaffle.sol#165) lacks a zero-check on :
+                - feeAddress = newFeeAddress (src/PuppyRaffle.sol#166)
+```
+
+### Recommended Mitigation
+
+Add a zero address check whenever the `feeAddress` is updated.
+
 ## [G-1] Unchanged state variables should be declared constant or immutable
 
 ### Description
@@ -260,3 +277,20 @@ Reading from storage is much more expensive than reading from a constant or immu
 - `PuppyRaffle::rareImageUri` should be `constant`.
 - `PuppyRaffle::legendaryImageUri` should be `constant`.
 
+## [G-2] Storage variables in a loop should be cached
+
+### Description
+
+Every time you call `players.length` you read from storage, as opposed to memory which is more gas efficient.
+
+### Recommended Mitigation
+
+```diff
++       uint256 playersLength = players.length;
+-        for (uint256 i = 0; i < players.length - 1; i++) {
++        for (uint256 i = 0; i < playersLength - 1; i++) {    
+             for (uint256 j = i + 1; j < players.length; j++) {
+                 require(players[i] != players[j], "PuppyRaffle: Duplicate player");
+             }
+         }
+```
