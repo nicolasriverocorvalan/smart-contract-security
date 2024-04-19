@@ -230,4 +230,33 @@ There are a few recommendations:
 ```
 Alternatively, you could use [OpenZeppelin's `EnumerableSet` library](https://docs.openzeppelin.com/contracts/4.x/api/utils#EnumerableSet).
 
+## [I-1] Floating pragmas 
+
+### Description
+
+Contracts should use strict versions of solidity. Locking the version ensures that contracts are not deployed with a different version of solidity than they were tested with. An incorrect version could lead to unintended results.
+
+https://swcregistry.io/docs/SWC-103/
+
+### Recommended Mitigation:
+
+Lock up pragma versions.
+
+```diff
+- pragma solidity ^0.7.6;
++ pragma solidity 0.7.6;
+```
+
+## [G-1] Unchanged state variables should be declared constant or immutable
+
+### Description
+
+Reading from storage is much more expensive than reading from a constant or immutable variable.
+
+### Recommended Mitigation
+
+- `PuppyRaffle::raffleDuration` should be `immutable`.
+- `PuppyRaffle::commonImageUri` should be `constant`.
+- `PuppyRaffle::rareImageUri` should be `constant`.
+- `PuppyRaffle::legendaryImageUri` should be `constant`.
 
