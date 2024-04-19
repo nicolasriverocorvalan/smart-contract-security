@@ -60,7 +60,7 @@ Contracts have owners with privileged rights to perform admin tasks and need to 
 	contract PuppyRaffle is ERC721, Ownable {
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 167](src/PuppyRaffle.sol#L167)
+- Found in src/PuppyRaffle.sol [Line: 201](src/PuppyRaffle.sol#L201)
 
 	```solidity
 	    function changeFeeAddress(address newFeeAddress) external onlyOwner {
@@ -75,13 +75,13 @@ Contracts have owners with privileged rights to perform admin tasks and need to 
 Use `abi.encode()` instead which will pad items to 32 bytes, which will [prevent hash collisions](https://docs.soliditylang.org/en/v0.8.13/abi-spec.html#non-standard-packed-mode) (e.g. `abi.encodePacked(0x123,0x456)` => `0x123456` => `abi.encodePacked(0x1,0x23456)`, but `abi.encode(0x123,0x456)` => `0x0...1230...456`). Unless there is a compelling reason, `abi.encode` should be preferred. If there is only one argument to `abi.encodePacked()` it can often be cast to `bytes()` or `bytes32()` [instead](https://ethereum.stackexchange.com/questions/30912/how-to-compare-strings-in-solidity#answer-82739).
 If all arguments are strings and or bytes, `bytes.concat()` should be used instead.
 
-- Found in src/PuppyRaffle.sol [Line: 197](src/PuppyRaffle.sol#L197)
+- Found in src/PuppyRaffle.sol [Line: 231](src/PuppyRaffle.sol#L231)
 
 	```solidity
 	            abi.encodePacked(
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 201](src/PuppyRaffle.sol#L201)
+- Found in src/PuppyRaffle.sol [Line: 235](src/PuppyRaffle.sol#L235)
 
 	```solidity
 	                        abi.encodePacked(
@@ -113,13 +113,13 @@ Assigning values to address state variables without checking for `address(0)`.
 	        feeAddress = _feeAddress;
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 150](src/PuppyRaffle.sol#L150)
+- Found in src/PuppyRaffle.sol [Line: 178](src/PuppyRaffle.sol#L178)
 
 	```solidity
-	        previousWinner = winner;
+	        previousWinner = winner; // e vanity, doesn't matter
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 168](src/PuppyRaffle.sol#L168)
+- Found in src/PuppyRaffle.sol [Line: 202](src/PuppyRaffle.sol#L202)
 
 	```solidity
 	        feeAddress = newFeeAddress;
@@ -143,13 +143,13 @@ Assigning values to address state variables without checking for `address(0)`.
 	    function enterRaffle(address[] memory newPlayers) public payable {
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 96](src/PuppyRaffle.sol#L96)
+- Found in src/PuppyRaffle.sol [Line: 97](src/PuppyRaffle.sol#L97)
 
 	```solidity
 	    function refund(uint256 playerIndex) public {
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 189](src/PuppyRaffle.sol#L189)
+- Found in src/PuppyRaffle.sol [Line: 223](src/PuppyRaffle.sol#L223)
 
 	```solidity
 	    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
@@ -167,37 +167,37 @@ Assigning values to address state variables without checking for `address(0)`.
 	            1e18,
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 86](src/PuppyRaffle.sol#L86)
+- Found in src/PuppyRaffle.sol [Line: 87](src/PuppyRaffle.sol#L87)
 
 	```solidity
 	        for (uint256 i = 0; i < players.length - 1; i++) {
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 87](src/PuppyRaffle.sol#L87)
+- Found in src/PuppyRaffle.sol [Line: 88](src/PuppyRaffle.sol#L88)
 
 	```solidity
 	            for (uint256 j = i + 1; j < players.length; j++) {
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 127](src/PuppyRaffle.sol#L127)
+- Found in src/PuppyRaffle.sol [Line: 130](src/PuppyRaffle.sol#L130)
 
 	```solidity
 	        require(players.length >= 4, "PuppyRaffle: Need at least 4 players");
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 132](src/PuppyRaffle.sol#L132)
+- Found in src/PuppyRaffle.sol [Line: 137](src/PuppyRaffle.sol#L137)
 
 	```solidity
 	        uint256 prizePool = (totalAmountCollected * 80) / 100;
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 133](src/PuppyRaffle.sol#L133)
+- Found in src/PuppyRaffle.sol [Line: 138](src/PuppyRaffle.sol#L138)
 
 	```solidity
 	        uint256 fee = (totalAmountCollected * 20) / 100;
 	```
 
-- Found in src/PuppyRaffle.sol [Line: 139](src/PuppyRaffle.sol#L139)
+- Found in src/PuppyRaffle.sol [Line: 167](src/PuppyRaffle.sol#L167)
 
 	```solidity
 	        uint256 rarity = uint256(keccak256(abi.encodePacked(msg.sender, block.difficulty))) % 100;
