@@ -247,7 +247,7 @@ Lock up pragma versions.
 + pragma solidity 0.7.6;
 ```
 
-## [I-4] Zero address validation
+## [I-2] Zero address validation
 
 ### Description
 
