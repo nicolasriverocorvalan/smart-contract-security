@@ -1,13 +1,14 @@
 # Smart Contract Security
 
-## Rekt test
-Before you go to audit must pass [Rekt Test](https://blog.trailofbits.com/2023/08/14/can-you-pass-the-rekt-test/).
+* Before you go to audit must pass [Rekt Test](https://blog.trailofbits.com/2023/08/14/can-you-pass-the-rekt-test/).
+* [Solodit](https://solodit.xyz/auth/), all reports in one place.
 
 ## Notes
 * ERC721: NFT.
 * Toke URI:
   - URI is a string containing characters that identify a physical or logical resource. 
   - It is just a simple API call.
+* [CEI/FREI-PI](https://www.nascent.xyz/idea/youre-writing-require-statements-wrong)
 
 ### Fuzzing/Invariant test
 * random inputs
