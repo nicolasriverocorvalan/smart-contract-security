@@ -57,7 +57,7 @@ contract_address = os.getenv('CONTRACT_ADDRESS')
 # Create contract object
 contract = w3.eth.contract(address=contract_address, abi=abi)
 
-for i in range(2):
+for i in range(10):
     # Build a transaction
     transaction = contract.functions.play().build_transaction({
         'from': account,
