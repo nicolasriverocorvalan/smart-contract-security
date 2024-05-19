@@ -49,5 +49,5 @@ for i in range(10):
         'nonce': w3.eth.get_transaction_count(account) + i,
         'gasPrice': int(w3.eth.gas_price * 1.1),
     }
-    send_transaction(contract.functions.play(), params)
+    send_transaction(contract.functions.attack(), params)
     time.sleep(15)

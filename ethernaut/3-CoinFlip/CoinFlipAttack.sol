@@ -20,7 +20,7 @@ contract CoinFlipAttack {
         return side;
     }
 
-    function play() public {
+    function attack() public {
         bool prediction = predict();
         coinFlip.flip(prediction);
     }
