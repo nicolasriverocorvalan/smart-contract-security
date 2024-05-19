@@ -3,7 +3,6 @@ pragma solidity ^0.6.0;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.4.0/contracts/math/SafeMath.sol";
 
-// Claim ownership of the contract
 contract Fallout {
     using SafeMath for uint256;
 
