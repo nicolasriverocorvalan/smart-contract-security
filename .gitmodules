@@ -19,3 +19,6 @@
 [submodule "ethernaut/3-CoinFlip/lib/forge-std"]
 	path = ethernaut/3-CoinFlip/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "ethernaut/4-Telephone/lib/forge-std"]
+	path = ethernaut/4-Telephone/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
