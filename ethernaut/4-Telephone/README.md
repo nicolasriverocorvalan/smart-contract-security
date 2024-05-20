@@ -1,47 +1,66 @@
-# Telephone
+## Foundry
 
-## Externally Owned Account
+**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
-EOA are accounts controlled by private keys and have no associated code. They can send transactions (including Ether transfers) to other EOAs or to contract accounts by creating and signing a transaction with their private key.
+Foundry consists of:
 
-In contrast, contract accounts are controlled by their contract code and can only perform an action (like sending Ether) when instructed to do so by an EOA.
+-   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
+-   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
+-   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
+-   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
 
-So, when a transaction is initiated, it's always started by an EOA, and that's what `tx.origin` refers to. `msg.sender` can be either an EOA or a contract account, depending on whether the call was made directly by an EOA or forwarded through a contract.
+## Documentation
 
-## Vulnerability
+https://book.getfoundry.sh/
 
-```javascript
-function changeOwner(address _owner) public {
-    if (tx.origin != msg.sender) {
-        owner = _owner;
-    }
-}
-````
+## Usage
 
-The vulnerability in this Solidity function lies in the use of `tx.origin` for authorization.
+### Build
 
-`msg.sender` is the address of the entity (contract or EOA) directly interacting with the contract, while `tx.origin` is the address of the original entity that started the transaction (always an EOA).
+```shell
+$ forge build
+```
 
-The condition `tx.origin != msg.sender` is true when the function is called by a contract which was itself called by an EOA. This means that if an attacker creates a malicious contract and tricks the original owner into calling it, the malicious contract can then call changeOwner and take ownership of the contract.
+### Test
 
-## Attack
+```shell
+$ forge test
+```
 
-1. Attacker creates a malicious contract.
-2. Attacker tricks the original owner into calling a function in the malicious contract.
-3. The malicious contract calls `changeOwner`, passing its own address as _owner.
-4. Since `tx.origin` (the original owner) is not the same as `msg.sender` (the malicious contract), the condition is true and the ownership is transferred to the attacker.
+### Format
 
-## Fix
+```shell
+$ forge fmt
+```
 
-To fix this vulnerability, you should use `msg.sender` for authorization checks instead of `tx.origin`. This ensures that only the entity directly interacting with the contract can change the owner
+### Gas Snapshots
 
-```javascript
-modifier onlyOwner {
-    require(msg.sender == owner, "Only the current owner can change the owner");
-    _;
-}
+```shell
+$ forge snapshot
+```
 
-function changeOwner(address _owner) public onlyOwner {
-    owner = _owner;
-}
+### Anvil
+
+```shell
+$ anvil
+```
+
+### Deploy
+
+```shell
+$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```
+
+### Cast
+
+```shell
+$ cast <subcommand>
+```
+
+### Help
+
+```shell
+$ forge --help
+$ anvil --help
+$ cast --help
 ```
