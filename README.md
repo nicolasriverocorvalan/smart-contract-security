@@ -22,7 +22,7 @@ Explore the repository to learn about common vulnerabilities, audit techniques, 
 * [CEI/FREI-PI](https://www.nascent.xyz/idea/youre-writing-require-statements-wrong)
 
 ### Fuzzing/Invariant test
-* random inputs
+* Random inputs
 * Stateful fuzzing: fuzzing where the final state of your previous run is the starting state of your next run.
 * In Foundry:
   - Fuzzing test: Random data to one function (stateless).
@@ -33,7 +33,7 @@ Explore the repository to learn about common vulnerabilities, audit techniques, 
 1. Scoping
    * [cloc](https://github.com/AlDanial/cloc)
 2. Recon
-   * Context: VSCode plugin: Solidity metrics (+ Scoping).
+   * Context: VSCode plugin -> Solidity metrics (+ Scoping).
    * Understanding the code.
 3. Exploit
    * Access control.
