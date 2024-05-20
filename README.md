@@ -1,5 +1,8 @@
 # Smart Contract Security
 
+[Web3 Attacks](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/attacks)
+[Ethernaut with Foundry](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/ethernaut)
+
 ## Notes
 * Before you go to audit must pass [Rekt Test](https://blog.trailofbits.com/2023/08/14/can-you-pass-the-rekt-test/).
 * [Solodit](https://solodit.xyz/auth/), all reports in one place.
