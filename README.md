@@ -1,7 +1,16 @@
 # Smart Contract Security
 
-[Web3 Attacks](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/attacks)
-[Ethernaut with Foundry](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/ethernaut)
+This repository aims to collect and share comprehensive information about the security aspects of smart contracts. Smart contracts offer numerous advantages such as transparency, efficiency, and automation, they also present unique security challenges and vulnerabilities.
+
+In this repository, you'll find a curated collection of resources, best practices, and guidelines to help developers and auditors understand and mitigate the risks associated with smart contracts. The goal is to provide a centralized source of knowledge to enhance the security and reliability of smart contracts in the decentralized ecosystem.
+
+Explore the repository to learn about common vulnerabilities, audit techniques, and security tools that can help ensure the robustness of your smart contracts.
+
+[1. Web3 Attacks](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/attacks)
+
+[2. Ethernaut with Foundry](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/ethernaut)
+
+[3. Smart contracts security audits](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/audits)
 
 ## Notes
 * Before you go to audit must pass [Rekt Test](https://blog.trailofbits.com/2023/08/14/can-you-pass-the-rekt-test/).
