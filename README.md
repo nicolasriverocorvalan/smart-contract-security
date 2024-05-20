@@ -16,7 +16,7 @@ Explore the repository to learn about common vulnerabilities, audit techniques, 
 * Before you go to audit must pass [Rekt Test](https://blog.trailofbits.com/2023/08/14/can-you-pass-the-rekt-test/).
 * [Solodit](https://solodit.xyz/auth/), all reports in one place.
 * ERC721: NFT.
-* Toke URI:
+* Token URI:
   - URI is a string containing characters that identify a physical or logical resource. 
   - It is just a simple API call.
 * [CEI/FREI-PI](https://www.nascent.xyz/idea/youre-writing-require-statements-wrong)
