@@ -1,6 +1,7 @@
 # Fallback
 
-Claim ownership of the contract.
+1. Claim ownership of the contract
+2. Reduce its balance to 0
 
 ## Vulnerability
 
