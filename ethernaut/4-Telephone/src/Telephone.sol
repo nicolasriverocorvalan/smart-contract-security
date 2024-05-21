@@ -2,7 +2,6 @@
 
 pragma solidity ^0.8.0;
 
-// Claim ownership of the contract
 contract Telephone {
     address public owner;
 
