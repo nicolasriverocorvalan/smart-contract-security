@@ -1,17 +1,28 @@
 # Smart Contract Security
 
-* Before you go to audit must pass [Rekt Test](https://blog.trailofbits.com/2023/08/14/can-you-pass-the-rekt-test/).
-* [Solodit](https://solodit.xyz/auth/), all reports in one place.
+This repository aims to collect and share comprehensive information about the security aspects of smart contracts. Smart contracts offer numerous advantages such as transparency, efficiency, and automation, they also present unique security challenges and vulnerabilities.
+
+In this repository, you'll find a curated collection of resources, best practices, and guidelines to help developers and auditors understand and mitigate the risks associated with smart contracts. The goal is to provide a centralized source of knowledge to enhance the security and reliability of smart contracts in the decentralized ecosystem.
+
+Explore the repository to learn about common vulnerabilities, audit techniques, and security tools that can help ensure the robustness of your smart contracts.
+
+[1. Web3 Attacks](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/attacks)
+
+[2. Ethernaut with Foundry](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/ethernaut)
+
+[3. Smart contracts security audits](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/audits)
 
 ## Notes
+* Before you go to audit must pass [Rekt Test](https://blog.trailofbits.com/2023/08/14/can-you-pass-the-rekt-test/).
+* [Solodit](https://solodit.xyz/auth/), all reports in one place.
 * ERC721: NFT.
-* Toke URI:
+* Token URI:
   - URI is a string containing characters that identify a physical or logical resource. 
   - It is just a simple API call.
 * [CEI/FREI-PI](https://www.nascent.xyz/idea/youre-writing-require-statements-wrong)
 
 ### Fuzzing/Invariant test
-* random inputs
+* Random inputs
 * Stateful fuzzing: fuzzing where the final state of your previous run is the starting state of your next run.
 * In Foundry:
   - Fuzzing test: Random data to one function (stateless).
@@ -22,7 +33,7 @@
 1. Scoping
    * [cloc](https://github.com/AlDanial/cloc)
 2. Recon
-   * Context: VSCode plugin: Solidity metrics (+ Scoping).
+   * Context: VSCode plugin -> Solidity metrics (+ Scoping).
    * Understanding the code.
 3. Exploit
    * Access control.
