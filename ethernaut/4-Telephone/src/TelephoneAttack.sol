@@ -5,11 +5,11 @@ pragma solidity ^0.8.0;
 import "./Telephone.sol";
 
 contract TelephoneAttack {
-    Telephone private telephone;
-    address private attacker;
+    Telephone public telephone;
+    address public attacker;
 
-    constructor(Telephone _telephone) {
-        telephone = _telephone;
+    constructor(address _telephoneAddress) {
+        telephone = Telephone(_telephoneAddress);
         attacker = msg.sender;
     }
 

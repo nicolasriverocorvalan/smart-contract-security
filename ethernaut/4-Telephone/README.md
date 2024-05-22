@@ -1,6 +1,6 @@
 # Telephone
 
-## Externally Owned Account
+## Externally Owned Account (EOA)
 
 EOA are accounts controlled by private keys and have no associated code. They can send transactions (including Ether transfers) to other EOAs or to contract accounts by creating and signing a transaction with their private key.
 
@@ -37,13 +37,16 @@ The condition `tx.origin != msg.sender` is true when the function is called by a
 1. Deploy `TelephoneAttack.sol` using the cast deploy command.
 
 ```bash
-forge script script/DeployTelephoneAttack.s.sol --rpc-url $ALCHEMY_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
+forge script script/DeployTelephoneAttack.s.sol --rpc-url $ALCHEMY_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv --legacy
 
 # make deploy ARGS="--network sepolia"
-# https://sepolia.etherscan.io/address/0xEdFeE5e1Dd298adA5F4F7FdE7a0d0B4ccc8e9AF4
+# https://sepolia.etherscan.io/address/0x702D93285128BFE7fdd63bB7aF0fAfA8121a8D75
 ```
 2. Attack
-   
+
+```bash
+cast send $CONTRACT_ADDRESS "attack()" --private-key $PRIVATE_KEY --rpc-url $ALCHEMY_RPC_URL --legacy
+```
 
 ## Fix
 

@@ -33,18 +33,16 @@ By calling the attack function multiple times, you can win the coin flip in the 
 1. Deploy `CoinFlipAttack.sol` using the cast deploy command.
 
 ```bash
-forge script script/DeployCoinFlipAttack.s.sol --rpc-url $ALCHEMY_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
+forge script script/DeployCoinFlipAttack.s.sol --rpc-url $ALCHEMY_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv --legacy
 
 # make deploy ARGS="--network sepolia"
-# https://sepolia.etherscan.io/address/0xEdFeE5e1Dd298adA5F4F7FdE7a0d0B4ccc8e9AF4
+# https://sepolia.etherscan.io/address/0xaaC17BbbF3d6433b3d5DaA4704AF703D96F3F726
 ```
 
 2. Attack
 
 ```bash
-for i in {1..3}; do cast send $CONTRACT_ADDRESS "attack()" --private-key $PRIVATE_KEY --rpc-url $ALCHEMY_RPC_URL; sleep 15; done
-
-for i in {1..2}; do cast send $CONTRACT_ADDRESS "attack()" --private-key $PRIVATE_KEY --rpc-url $ALCHEMY_RPC_URL;
+for i in {1..10}; do cast send $CONTRACT_ADDRESS "attack()" --private-key $PRIVATE_KEY --rpc-url $ALCHEMY_RPC_URL --legacy;
 ; printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '-';  sleep 20; done
 ```
 

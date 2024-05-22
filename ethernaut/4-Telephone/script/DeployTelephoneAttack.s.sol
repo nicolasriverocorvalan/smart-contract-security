@@ -7,12 +7,12 @@ import {TelephoneAttack} from "../src/TelephoneAttack.sol";
 import {Telephone} from "../src/Telephone.sol";
 
 contract DeployCoinFlipAttack is Script {
-    Telephone public telephone;
+    address private constant TELEPHONE_ADDRESS = 0xFB9BF27079B6cc3e2356d4B734852BEFD882B766; //Telephone contract to attack
 
     function run() external returns (TelephoneAttack) {
         vm.startBroadcast();
 
-        TelephoneAttack telephoneAttack = new TelephoneAttack(telephone);
+        TelephoneAttack telephoneAttack = new TelephoneAttack(TELEPHONE_ADDRESS);
 
         vm.stopBroadcast();
         return telephoneAttack;
