@@ -1,66 +1,26 @@
-## Foundry
+# Token
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+You are given 20 tokens to start with and you will beat the level if you somehow manage to get your hands on any additional tokens. Preferably a very large amount of tokens.
 
-Foundry consists of:
+## Vulnerability
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+The `transfer` function (`pragma solidity ^0.6.0`) in your contract has a vulnerability related to underflow. Solidity uses unsigned integers, which means they can't be negative. If `_value` is greater than balances[msg.sender], the subtraction will underflow and result in a very large number, not a negative number. This would pass your require statement and could lead to unexpected behavior.
 
-## Documentation
+The attacker calls the transfer function with a `_value` greater than their current balance. For example, with a zero balance address, the attacker could call transfer with `_value` set to `n` tokens to any address.
 
-https://book.getfoundry.sh/
+## Attack
 
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```bash
+cast send $CONTRACT_ADDRESS "transfer(address,uint256)" $ACCOUNT_ADDRESS 100 --private-key $PRIVATE_KEY_ACCOUNT_2 --rpc-url $ALCHEMY_RPC_URL --legacy
 ```
+Note: `PRIVATE_KEY_ACCOUNT_2` -> initial balance = 0 tokens
 
-### Test
+## Fix
 
-```shell
-$ forge test
-```
+To fix this vulnerability, you should check if `balances[msg.sender]` is greater than or equal to `_value` before subtracting `_value`:
 
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+```bash
+require(balances[msg.sender] >= _value);
+balances[msg.sender] -= _value;
+balances[_to] += _value;
 ```
