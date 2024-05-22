@@ -1,66 +1,33 @@
-## Foundry
+# Force
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Make the balance of the contract greater than zero.
 
-Foundry consists of:
+## Notes
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+```
+`selfdestruct` has been deprecated. Note that, starting from the `Cancun` hard fork, the opcode no longer deletes the code and data associated with an account and only transfers its Ether to the beneficiary, unless executed in the same transaction in which the contract was created (see EIP-6780). Any use in newly deployed contracts is strongly discouraged even if the new behavior is taken into account. Future changes to the EVM might further reduce the functionality of the opcode.
+````
 
-## Documentation
+In Ethereum, you can send Ether to a contract in two ways:
 
-https://book.getfoundry.sh/
+1. By calling a payable function in the contract.
+2. By sending Ether to the contract's address.
 
-## Usage
+The `Force` contract doesn't have any functions. So, the only way to increase its balance is by sending Ether directly to the contract's address.
 
-### Build
+## Found
 
-```shell
-$ forge build
+1. Deploy `TelephoneAttack.sol` using the cast deploy command.
+
+```bash
+forge script script/DeployFoundForce.s.sol --rpc-url $ALCHEMY_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv --legacy
+
+# make deploy ARGS="--network sepolia"
+# https://sepolia.etherscan.io/address/0xD6C3f00f2edCd960e69AC53194b49C6A9A06c5b5
 ```
 
-### Test
+2. Found
 
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+```bash
+cast send $CONTRACT_ADDRESS "found()" --value 1wei  --private-key $PRIVATE_KEY --rpc-url $ALCHEMY_RPC_URL --legacy
 ```
