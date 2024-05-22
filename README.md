@@ -8,9 +8,9 @@ Explore the repository to learn about common vulnerabilities, audit techniques, 
 
 [1. Web3 Attacks](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/attacks)
 
-[2. Ethernaut with Foundry](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/ethernaut)
+[2. Ethernaut with Foundry](https://github.com/nicolasriverocorvalan/ethernaut-with-foundry)
 
-[3. Smart contracts security audits](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/audits)
+[3. Smart contracts security audits](https://github.com/nicolasriverocorvalan/smart-contract-security/tree/main/audtis)
 
 ## Notes
 * Before you go to audit must pass [Rekt Test](https://blog.trailofbits.com/2023/08/14/can-you-pass-the-rekt-test/).

@@ -22,3 +22,12 @@
 [submodule "ethernaut/4-Telephone/lib/forge-std"]
 	path = ethernaut/4-Telephone/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "ethernaut/5-Token/lib/forge-std"]
+	path = ethernaut/5-Token/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "ethernaut/6-Delegation/lib/forge-std"]
+	path = ethernaut/6-Delegation/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "ethernaut/7-Force/lib/forge-std"]
+	path = ethernaut/7-Force/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
