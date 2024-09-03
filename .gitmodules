@@ -31,3 +31,6 @@
 [submodule "ethernaut/7-Force/lib/forge-std"]
 	path = ethernaut/7-Force/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "audtis/3-tswap/lib/forge-std"]
+	path = audtis/3-tswap/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
