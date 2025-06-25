@@ -1,54 +1,53 @@
-# Exercise 3
+# Exercise 2
 
-Assume your wallet address is 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, and you are a signer on a valid mutlisig wallet at address 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 using safe version 1.4.1. You are attempting to deposit 0.1 ETH to the ZKsync Aave token pool. Please sign this transaction if doing so will bring you closer to executing, otherwise reject it.
-
-Also assume, you have the settings of your hardware wallet set to show ONLY the Domain and Message hash, and not the entire JSON data. So when you see the Message page, you know that this is showing you the message hash and domain hash (domain separator) and not the actual JSON message.
-
-Hint: Here is the starting JSON data that is being signed if you want it:
+Assume your wallet address is 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, and you are a signer on a valid mutlisig wallet at address 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 using safe version 1.4.1. You are attempting to send 1 WETH to address: 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 on the Arbitrum network. Please sign or reject this transaction, if doing so will bring you closer to executing.
 
 ```bash
-{
+Signature Request
+From: https: //app.safe.global/
+
+Message to sign: {
     "types": {
         "SafeTx": [
             {
-                "name": "to",
-                "type": "address"
+                "type": "address",
+                "name": "to"
             },
             {
-                "name": "value",
-                "type": "uint256"
+                "type": "uint256",
+                "name": "value"
             },
             {
-                "name": "data",
-                "type": "bytes"
+                "type": "bytes",
+                "name": "data"
             },
             {
-                "name": "operation",
-                "type": "uint8"
+                "type": "uint8",
+                "name": "operation"
             },
             {
-                "name": "safeTxGas",
-                "type": "uint256"
+                "type": "uint256",
+                "name": "safeTxGas"
             },
             {
-                "name": "baseGas",
-                "type": "uint256"
+                "type": "uint256",
+                "name": "baseGas"
             },
             {
-                "name": "gasPrice",
-                "type": "uint256"
+                "type": "uint256",
+                "name": "gasPrice"
             },
             {
-                "name": "gasToken",
-                "type": "address"
+                "type": "address",
+                "name": "gasToken"
             },
             {
-                "name": "refundReceiver",
-                "type": "address"
+                "type": "address",
+                "name": "refundReceiver"
             },
             {
-                "name": "nonce",
-                "type": "uint256"
+                "type": "uint256",
+                "name": "nonce"
             }
         ],
         "EIP712Domain": [
@@ -63,89 +62,32 @@ Hint: Here is the starting JSON data that is being signed if you want it:
         ]
     },
     "domain": {
-        "chainId": "0x144",
+        "chainId": "42161",
         "verifyingContract": "0x4087d2046A7435911fC26DCFac1c2Db26957Ab72"
     },
     "primaryType": "SafeTx",
     "message": {
-        // Fill me in!
+        "to": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1", (Wrapped Ether (WETH) contract on Arbitrum)
+        "value": "0",
+        "data": "0xa9059cbb000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa960450000000000000000000000000000000000000000000000000de0b6b3a7640000",
+        "operation": "0",
+        "safeTxGas": "0",
+        "baseGas": "0",
+        "gasPrice": "0",
+        "gasToken": "0x0000000000000000000000000000000000000000",
+        "refundReceiver": "0x0000000000000000000000000000000000000000",
+        "nonce": "29"
     }
+}
+
+Calldata:
+{
+  "function": "transfer(address,uint256)",
+  "params": [
+    "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+    "1000000000000000000"
+  ]
 }
 ```
 
-```bash
-Aave
-Nonce #
-1
-call depositETHonWrappedTokenGatewayV3
-Value:
-0.1 ETH
-
-(address)
-zks:0xAE2b00D676130Bdf22582781BbBA8f4F21e8B0ff (WrappedTokenGatewayV3 ZKsync contract)
-
-onBehalfOf (address)
-zks:0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (your wallet)
-
-referralCode (uint16)
-0
-
----
-
-Advanced details
-
-to:
-zks:0xAE2b00D676130Bdf22582781BbBA8f4F21e8B0ff
-
-value:
-100000000000000000
-
-data:
-0x474cf53d00000000...00000000
-
-operation:
-0
-safeTxGas:
-0
-baseGas:
-0
-gasPrice:
-0
-gasPrice:
-0
-gasToken:
-0x0000000000000000000000000000000000000000
-
-refundReceiver:
-zks:0x0000000000000000000000000000000000000000
-
-nonce:
-1
-Transaction Hashes
-Domain Hash:
-0xe0392d263ff13e09757bfce9b182ead6ceabd9d1b404aa7df77e65b304969130
-
-Message Hash:
-0x02def9296d874a88cd65d1adfdb9c220a186f812113ae9a6080836932e3df670
-
-safeTxHash:
-0x87414b6a2a5c6664ddbc9b79392a2fd4ac5a294a6b807b70b28641b3b8af297b
-
-```
-
-`Result -> rejected`
-
-
-```bash
-cast 4byte-calldata  0x474cf53d0000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000000000000000000000000000000000000000000000
-
-1) "depositETH(address,address,uint16)"
-0x4087d2046A7435911fC26DCFac1c2Db26957Ab72
-0x4087d2046A7435911fC26DCFac1c2Db26957Ab72
-0
-
-✗ safe-hash typed --file Exercise_3.json --standalone
-EIP 712 Hash:            0x452952ca0a93e9a05d3c138dff85dffc061f196a7b428945aadc70f92687a75d
-Domain Hash:             0xe0392d263ff13e09757bfce9b182ead6ceabd9d1b404aa7df77e65b304969130
-Message Hash:            0xfac0c15391856b749f37c979c6068dac6e6264b182501425aaff9dac190a2daa
-```
+`Result-> approved`

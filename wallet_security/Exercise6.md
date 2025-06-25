@@ -1,35 +1,29 @@
-# Exercise 5
+# Exercise 4
 
-And now, we tie it all together! Will this transaction execute? Sign if you think so... Otherwise reject it. This is the same transaction from a previous one Except this time, we are executing it.
+Now, can you sign a safe transaction where the signer is another safe? Let's find out...
 
-Assume your wallet address is 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, and you are a signer on a valid mutlisig wallet at address 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 using safe version 1.4.1. You are attempting to deposit 0.1 ETH to the ZKsync Aave token pool.
+We are attempting to send 0.01 WETH from our valiud multi-sig wallet 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 to 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 on the Arbitrum network. You are using safe version 1.4.1. Our main signer is another safe wallet at address 0x5031f5E2ed384978dca63306dc28A68a6Fc33e81 using safe version 1.4.1.
 
-Please execute this transaction if you think it will not revert based on the calldata, and if it will do what we think it should.
+Please sign this transaction if doing so will bring you closer to executing, otherwise reject it.
 
 ```bash
-call depositETH on WrappedTokenGatewayV3
-Value:
-0.1 ETH
+call transfer on WETH1
+dst (address)
+arb:0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
 
-(address)
-zks:0xAE2b00D676130Bdf22582781BbBA8f4F21e8B0ff
-
-onBehalfOf (address)
-zks:0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
-
-referralCode (uint16)
-0
+wad (uint256)
+10000000000000000
 
 Advanced details
 
 to:
-zks:0xAE2b00D676130Bdf22582781BbBA8f4F21e8B0ff
+arb:0x82af49447d8a07e3bd95bd0d56f35241523fbab1
 
 value:
-100000000000000000
+10000000000000000
 
 data:
-0x474cf53d00000000...00000000
+0xa9059cbb00000000...6fc10000
 
 operation:
 0
@@ -45,96 +39,199 @@ gasToken:
 0x0000000000000000000000000000000000000000
 
 refundReceiver:
-zks:0x0000000000000000000000000000000000000000
+arb:0x0000000000000000000000000000000000000000
 
 nonce:
-1
+3
 Transaction Hashes
 Domain Hash:
-0x6b7b2f6fc32adea40689c72912cf0fd00f9a2455204e0a2edfd9e5684b64db1b
+0x886981c7ac254ace571077f0a055e84e72dac298c286f3b83638eaa308820d082
 
 Message Hash:
-0xe0392d263ff13e09757bfce9b182ead6ceabd9d1b404aa7df77e65b304969130
+0xa95cd534867e78aa5866b22e278984004eca36cff555462c50be402f7b292832
 
 safeTxHash:
-0xdcab1ef0579aa50678fcb3a1e815b6e7fa271ad33db76832199632fa61c47bf4
+0x46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0
 ```
 
 ```bash
-Confirm transaction
-ZKsync Era
-From (your account)
-0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266  (Personal Wallet)
-To
-0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 (Safe Wallet)
-Amount
-1 ETH
-Estimated fee
-$0.02
-0.00004ETH
+call approveHash on 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72
+hashToApprove (bytes32)
+0x46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0
 
----
+Advanced details
 
-Function:execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)
-Data:
-0x6a7612020000000000000000000000004087d2046A7435911fC26DCFac1c2Db26957Ab720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001e00000000000000000000000000000000000000000000000000000000000000064474cf53d0000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000035277d26a45add5775f21256159f089769892cea5b0000000000000000000000000000000000000000000000000000000000000000010000000000000000000000
+to:
+arb:0x82af49447d8a07e3bd95bd0d56f35241523fbab1
+
+value:
+10000000000000000
+
+data:
+0xd4d9bdcd46fcaf71...8f507fa0
+
+operation:
+0
+safeTxGas:
+0
+baseGas:
+0
+gasPrice:
+0
+gasPrice:
+0
+gasToken:
+0x0000000000000000000000000000000000000000
+
+refundReceiver:
+arb:0x0000000000000000000000000000000000000000
+
+nonce:
+5
+Transaction Hashes
+Domain Hash:
+0x3269807350d9dc0089b20781ce2f4ca71614ada2a1a116d0c79a6d801e033f8d
+
+Message Hash:
+0x870f0b85c95ffc9657a8ba0b4fbdc43d4cca1ed8400290ab97b19b5befe51e49
+
+safeTxHash:
+0xde604d0d4e6cdb1cf39e8ff1b8c3ece230c2ec921b2538d6bbdb9cae54534c06
 ```
-
-`Result -> rejected`
-
-The signature is just incorrect, and the transaction would have reverted. When you execute a transaction, and you are the last signer, Safe{Wallet} contracts allow you to not actually sign the final transaction. Instead, as your last parameter, you input your address and the Safe{Wallet} will check that whoever sent the transaction is the last signer.
-
 
 ```bash
-calldata: 0x474cf53d0000000000000000000000009f07eebdf3675f60dcec65a092f1821fb99726f3000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb922660000000000000000000000000000000000000000000000000000000000000000
-
-✗ cast 4byte-calldata 0x474cf53d0000000000000000000000009f07eebdf3675f60dcec65a092f1821fb99726f3000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb922660000000000000000000000000000000000000000000000000000000000000000
-
-1) "depositETH(address,address,uint16)"
-0x9F07eEBdf3675f60dCeC65a092F1821Fb99726F3 (ZKsync WrappedTokenGatewayV3)
-0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
-0
-
----
-✗ cast 4byte-calldata 0x6a7612020000000000000000000000004087d2046A7435911fC26DCFac1c2Db26957Ab720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001e00000000000000000000000000000000000000000000000000000000000000064474cf53d0000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000035277d26a45add5775f21256159f089769892cea5b0000000000000000000000000000000000000000000000000000000000000000010000000000000000000000
-
-1) "execTransaction(address,uint256,bytes,uint8,uint256,uint256,uint256,address,address,bytes)"
-0x4087d2046A7435911fC26DCFac1c2Db26957Ab72
-0
-0x474cf53d0000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000000000000000000000000000000000000000000000
-0
-0
-0
-0
-0x0000000000000000000000000000000000000000
-0x0000000000000000000000000000000000000000
-0x277d26a45add5775f21256159f089769892cea5b000000000000000000000000000000000000000000000000000000000000000001
-------
-
-✗ cast 4byte-calldata 0x474cf53d0000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000000000000000000000000000000000000000000000
-
-1) "depositETH(address,address,uint16)"
-0x4087d2046A7435911fC26DCFac1c2Db26957Ab72
-0x4087d2046A7435911fC26DCFac1c2Db26957Ab72
-0
-0
+Signature Request
+From: https://app.safe.global/
+Message to sign:
+{
+    "types": {
+        "SafeTx": [
+            {
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "name": "value",
+                "type": "uint256"
+            },
+            {
+                "name": "data",
+                "type": "bytes"
+            },
+            {
+                "name": "operation",
+                "type": "uint8"
+            },
+            {
+                "name": "safeTxGas",
+                "type": "uint256"
+            },
+            {
+                "name": "baseGas",
+                "type": "uint256"
+            },
+            {
+                "name": "gasPrice",
+                "type": "uint256"
+            },
+            {
+                "name": "gasToken",
+                "type": "address"
+            },
+            {
+                "name": "refundReceiver",
+                "type": "address"
+            },
+            {
+                "name": "nonce",
+                "type": "uint256"
+            }
+        ],
+        "EIP712Domain": [
+            {
+                "name": "chainId",
+                "type": "uint256"
+            },
+            {
+                "name": "verifyingContract",
+                "type": "address"
+            }
+        ]
+    },
+    "domain": {
+        "chainId": "0xa4b1",
+        "verifyingContract": "0x5031f5E2ed384978dca63306dc28A68a6Fc33e81"
+    },
+    "primaryType": "SafeTx",
+    "message": {
+        "to": "0x4087d2046A7435911fC26DCFac1c2Db26957Ab72",
+        "value": "0",
+        "data": "0xd4d9bdcd46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0", 
+        "operation": "0",
+        "safeTxGas": "0",
+        "baseGas": "0",
+        "gasPrice": "0",
+        "gasToken": "0x0000000000000000000000000000000000000000",
+        "refundReceiver": "0x0000000000000000000000000000000000000000",
+        "nonce": "5"
+    }
+}
 ```
 
-## Decoding the Signature
+`Result-> approved`
 
-### Contract Signature (EIP-1271 Standard)
+```bash
+# First calldata
+cast 4byte-calldata 0xa9059cbb000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045000000000000000000000000000000000000000000000000002386f26fc10000
 
-* This is used when an owner of the Safe is another smart contract.
-* A smart contract doesn't have a private key, so it can't create a normal signature. Instead, it has a function called `isValidSignature` that can be called to verify its approval of a hash.
-* When using this method, the `v` value is set to 1 (0x01). The `r` value is set to the `contract-owner's address`.
-* When the Safe sees v=1, it makes a call to that contract owner and asks, "Is this transaction hash valid for you?"
+1) "transfer(address,uint256)"
+0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+10000000000000000 [1e16]
 
-The signatures parameter in a Gnosis Safe transaction is a concatenation of one or more 65-byte signatures. Each signature is composed of three parts: r, s, and v.
+# Second calldata
+cast 4byte-calldata 0xd4d9bdcd46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0
 
-For the provided signature `0x277d26a45add5775f21256159f089769892cea5b000000000000000000000000000000000000000000000000000000000000000001`:
+1) "approveHash(bytes32)"
+0x46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0
+```
 
-* r: 0x277d26a45add5775f21256159f089769892cea5b000000000000000000000000 (first 32 bytes)
-* s: 0x0000000000000000000000000000000000000000000000000000000000000000 (next 32 bytes)
-* v: 0x01 (last byte)
+You're signing a transaction from one Safe wallet that will be used to sign another Safe transaction. Whenever a Safe{Wallet} is a signer of another Safe{Wallet}, the signing wallet calls the `approveHash(bytes32)` function on the original Safe{Wallet}. Using safe-hash we could either try:
 
-Correct signature: `0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266000000000000000000000000000000000000000000000000000000000000000001`
+1. `--nested-safe-address`.
+2. Manually calculate both hashes.
+
+```bash
+✗ safe-hash tx --safe-address 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 --nonce 3 --safe-version 1.4.1 --chain arbitrum --to 0x82af49447d8a07e3bd95bd0d56f35241523fbab1 --data 0xa9059cbb000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045000000000000000000000000000000000000000000000000002386f26fc10000  --offline --nested-safe-address 0x5031f5E2ed384978dca63306dc28A68a6Fc33e81 --nested-safe-nonce 5
+
+Main transaction
+Domain Hash:             886981c7ac254ace571077f0a055e84e72dac298c286f3b83638eaa308820d08
+Message Hash:            a95cd534867e78aa5866b22e278984004eca36cff555462c50be402f7b292832
+Safe Transaction Hash:   46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0
+Verify the above value as the Safe Tx Hash when signing the message from the ledger.
+
+Nested transaction
+Domain Hash:             3269807350d9dc0089b20781ce2f4ca71614ada2a1a116d0c79a6d801e033f8d
+Message Hash:            870f0b85c95ffc9657a8ba0b4fbdc43d4cca1ed8400290ab97b19b5befe51e49
+Safe Transaction Hash:   de604d0d4e6cdb1cf39e8ff1b8c3ece230c2ec921b2538d6bbdb9cae54534c06
+Verify the above value as the Safe Tx Hash when signing the message from the ledger.
+```
+
+We could manually compute these ourselves, first by getting the safe TX hash of the main transaction:
+
+```bash
+✗ safe-hash tx --safe-address 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 --nonce 3 --safe-version 1.4.1 --chain arbitrum --to 0x82af49447d8a07e3bd95bd0d56f35241523fbab1 --data 0xa9059cbb000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045000000000000000000000000000000000000000000000000002386f26fc10000  --offline
+
+Main transaction
+Domain Hash:             886981c7ac254ace571077f0a055e84e72dac298c286f3b83638eaa308820d08
+Message Hash:            a95cd534867e78aa5866b22e278984004eca36cff555462c50be402f7b292832
+Safe Transaction Hash:   46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0
+Verify the above value as the Safe Tx Hash when signing the message from the ledger.
+
+ ✗ safe-hash tx --safe-address 0x5031f5E2ed384978dca63306dc28A68a6Fc33e81 --nonce 5 --safe-version 1.4.1 --chain arbitrum --to 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 --data 0xd4d9bdcd46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0  --offline
+
+Main transaction
+Domain Hash:             3269807350d9dc0089b20781ce2f4ca71614ada2a1a116d0c79a6d801e033f8d
+Message Hash:            870f0b85c95ffc9657a8ba0b4fbdc43d4cca1ed8400290ab97b19b5befe51e49
+Safe Transaction Hash:   de604d0d4e6cdb1cf39e8ff1b8c3ece230c2ec921b2538d6bbdb9cae54534c06
+Verify the above value as the Safe Tx Hash when signing the message from the ledger.
+```
