@@ -1,77 +1,10 @@
 # Exercise 5
 
+Verifying the massive JSON data on your hardware wallet can be a nightmare, as you'll have to scroll through many many screens to see all the data, which can lead to security fatigue. So you should get good at verifying using only the domain and message hash (or, the EIP-712 hash).
+
 Assume your wallet address is 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, and you are a signer on a valid mutlisig wallet at address 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 using safe version 1.4.1. You are attempting to deposit 0.1 ETH to the ZKsync Aave token pool. Please sign this transaction if doing so will bring you closer to executing, otherwise reject it.
 
 Also assume, you have the settings of your hardware wallet set to show ONLY the Domain and Message hash, and not the entire JSON data. So when you see the Message page, you know that this is showing you the message hash and domain hash (domain separator) and not the actual JSON message.
-
-Hint: Here is the starting JSON data that is being signed if you want it:
-
-```bash
-{
-    "types": {
-        "SafeTx": [
-            {
-                "name": "to",
-                "type": "address"
-            },
-            {
-                "name": "value",
-                "type": "uint256"
-            },
-            {
-                "name": "data",
-                "type": "bytes"
-            },
-            {
-                "name": "operation",
-                "type": "uint8"
-            },
-            {
-                "name": "safeTxGas",
-                "type": "uint256"
-            },
-            {
-                "name": "baseGas",
-                "type": "uint256"
-            },
-            {
-                "name": "gasPrice",
-                "type": "uint256"
-            },
-            {
-                "name": "gasToken",
-                "type": "address"
-            },
-            {
-                "name": "refundReceiver",
-                "type": "address"
-            },
-            {
-                "name": "nonce",
-                "type": "uint256"
-            }
-        ],
-        "EIP712Domain": [
-            {
-                "name": "chainId",
-                "type": "uint256"
-            },
-            {
-                "name": "verifyingContract",
-                "type": "address"
-            }
-        ]
-    },
-    "domain": {
-        "chainId": "0x144",
-        "verifyingContract": "0x4087d2046A7435911fC26DCFac1c2Db26957Ab72"
-    },
-    "primaryType": "SafeTx",
-    "message": {
-        // Fill me in!
-    }
-}
-```
 
 ```bash
 Aave
@@ -147,5 +80,9 @@ EIP 712 Hash:            0x452952ca0a93e9a05d3c138dff85dffc061f196a7b428945aadc7
 Domain Hash:             0xe0392d263ff13e09757bfce9b182ead6ceabd9d1b404aa7df77e65b304969130
 Message Hash:            0xfac0c15391856b749f37c979c6068dac6e6264b182501425aaff9dac190a2daa
 ```
+
+It turned out, in this case, the Safe UI was compromised, and it showed us an evil hash, and sent our wallet the evil hash. They had turned the operation from a 0 to a 1, which changed our transaction from a `call` to a `delegateCall`.
+
+If you update your file.json to have the operation as a 1, or update the SafeUtils to use a `DELEGATECALL` instead of a `CALL` and rerun, you will get the same hash as our Trezor wallet - the malicious one!
 
 `Result -> rejected`
