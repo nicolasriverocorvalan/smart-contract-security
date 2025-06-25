@@ -102,3 +102,7 @@ Signatures are off-chain confirmations. They don't immediately cause a blockchai
 * **Manage Token Approvals**: Regularly review and revoke unnecessary token approvals using tools like Revoke.cash or Etherscan's token approval checker.
 * **Beware of Phishing**: Scammers create fake websites, send DMs, or emails impersonating projects or support. Never share your seed phrase or private keys.
 * **Educate Yourself Continuously**: The Web3 space evolves rapidly. Stay informed about new types of scams and security best practices.
+
+### Notes
+
+* https://www.circle.com/blog/what-you-need-to-know-native-usdc-on-zksync
