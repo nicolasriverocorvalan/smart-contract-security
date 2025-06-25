@@ -1,4 +1,4 @@
-# Exercise 4
+# Exercise 6
 
 Now, can you sign a safe transaction where the signer is another safe? Let's find out...
 
