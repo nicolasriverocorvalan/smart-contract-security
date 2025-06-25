@@ -180,7 +180,58 @@ Message to sign:
 
 `Result-> approved`
 
+```bash
+# First calldata
+cast 4byte-calldata 0xa9059cbb000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045000000000000000000000000000000000000000000000000002386f26fc10000
+
+1) "transfer(address,uint256)"
+0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+10000000000000000 [1e16]
+
+# Second calldata
+cast 4byte-calldata 0xd4d9bdcd46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0
+
+1) "approveHash(bytes32)"
+0x46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0
+```
+
 You're signing a transaction from one Safe wallet that will be used to sign another Safe transaction. Whenever a Safe{Wallet} is a signer of another Safe{Wallet}, the signing wallet calls the `approveHash(bytes32)` function on the original Safe{Wallet}. Using safe-hash we could either try:
 
 1. `--nested-safe-address`.
 2. Manually calculate both hashes.
+
+```bash
+✗ safe-hash tx --safe-address 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 --nonce 3 --safe-version 1.4.1 --chain arbitrum --to 0x82af49447d8a07e3bd95bd0d56f35241523fbab1 --data 0xa9059cbb000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045000000000000000000000000000000000000000000000000002386f26fc10000  --offline --nested-safe-address 0x5031f5E2ed384978dca63306dc28A68a6Fc33e81 --nested-safe-nonce 5
+
+Main transaction
+Domain Hash:             886981c7ac254ace571077f0a055e84e72dac298c286f3b83638eaa308820d08
+Message Hash:            a95cd534867e78aa5866b22e278984004eca36cff555462c50be402f7b292832
+Safe Transaction Hash:   46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0
+Verify the above value as the Safe Tx Hash when signing the message from the ledger.
+
+Nested transaction
+Domain Hash:             3269807350d9dc0089b20781ce2f4ca71614ada2a1a116d0c79a6d801e033f8d
+Message Hash:            870f0b85c95ffc9657a8ba0b4fbdc43d4cca1ed8400290ab97b19b5befe51e49
+Safe Transaction Hash:   de604d0d4e6cdb1cf39e8ff1b8c3ece230c2ec921b2538d6bbdb9cae54534c06
+Verify the above value as the Safe Tx Hash when signing the message from the ledger.
+```
+
+We could manually compute these ourselves, first by getting the safe TX hash of the main transaction:
+
+```bash
+✗ safe-hash tx --safe-address 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 --nonce 3 --safe-version 1.4.1 --chain arbitrum --to 0x82af49447d8a07e3bd95bd0d56f35241523fbab1 --data 0xa9059cbb000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045000000000000000000000000000000000000000000000000002386f26fc10000  --offline
+
+Main transaction
+Domain Hash:             886981c7ac254ace571077f0a055e84e72dac298c286f3b83638eaa308820d08
+Message Hash:            a95cd534867e78aa5866b22e278984004eca36cff555462c50be402f7b292832
+Safe Transaction Hash:   46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0
+Verify the above value as the Safe Tx Hash when signing the message from the ledger.
+
+ ✗ safe-hash tx --safe-address 0x5031f5E2ed384978dca63306dc28A68a6Fc33e81 --nonce 5 --safe-version 1.4.1 --chain arbitrum --to 0x4087d2046A7435911fC26DCFac1c2Db26957Ab72 --data 0xd4d9bdcd46fcaf713a45a85097ddb1b9e0fbcc247e822d2032c8f69e73685c7d8f507fa0  --offline
+
+Main transaction
+Domain Hash:             3269807350d9dc0089b20781ce2f4ca71614ada2a1a116d0c79a6d801e033f8d
+Message Hash:            870f0b85c95ffc9657a8ba0b4fbdc43d4cca1ed8400290ab97b19b5befe51e49
+Safe Transaction Hash:   de604d0d4e6cdb1cf39e8ff1b8c3ece230c2ec921b2538d6bbdb9cae54534c06
+Verify the above value as the Safe Tx Hash when signing the message from the ledger.
+```

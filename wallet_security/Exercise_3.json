@@ -1,0 +1,73 @@
+{
+    "types": {
+        "SafeTx": [
+            {
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "name": "value",
+                "type": "uint256"
+            },
+            {
+                "name": "data",
+                "type": "bytes"
+            },
+            {
+                "name": "operation",
+                "type": "uint8"
+            },
+            {
+                "name": "safeTxGas",
+                "type": "uint256"
+            },
+            {
+                "name": "baseGas",
+                "type": "uint256"
+            },
+            {
+                "name": "gasPrice",
+                "type": "uint256"
+            },
+            {
+                "name": "gasToken",
+                "type": "address"
+            },
+            {
+                "name": "refundReceiver",
+                "type": "address"
+            },
+            {
+                "name": "nonce",
+                "type": "uint256"
+            }
+        ],
+        "EIP712Domain": [
+            {
+                "name": "chainId",
+                "type": "uint256"
+            },
+            {
+                "name": "verifyingContract",
+                "type": "address"
+            }
+        ]
+    },
+    "domain": {
+        "chainId": "0x144",
+        "verifyingContract": "0x4087d2046A7435911fC26DCFac1c2Db26957Ab72"
+    },
+    "primaryType": "SafeTx",
+    "message": {
+        "to": "0xAE2b00D676130Bdf22582781BbBA8f4F21e8B0ff",
+        "value": "100000000000000000",
+        "data": "0x474cf53d0000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000004087d2046a7435911fc26dcfac1c2db26957ab720000000000000000000000000000000000000000000000000000000000000000",
+        "operation": "0",
+        "safeTxGas": "0",
+        "baseGas": "0",
+        "gasPrice": "0",
+        "gasToken": "0x0000000000000000000000000000000000000000",
+        "refundReceiver": "0x0000000000000000000000000000000000000000",
+        "nonce": "1"
+    }
+}
