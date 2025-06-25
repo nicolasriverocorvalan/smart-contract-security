@@ -131,9 +131,11 @@ Hint: Here is the starting JSON data that is being signed if you want it:
         // Fill me in!
     }
 }
+```
 
-Result -> rejected
+`Result -> rejected`
 
+```bash
 Domain Hash
 0xe0392d263ff13e09757bfce9b182ead6ceabd9d1b404aa7df77e65b304969130
 Message Hash
