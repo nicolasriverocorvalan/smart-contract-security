@@ -178,14 +178,14 @@ Message to sign:
 }
 ```
 
-`Result-> approved`
+## Solution
 
 ```bash
 # First calldata
 cast 4byte-calldata 0xa9059cbb000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045000000000000000000000000000000000000000000000000002386f26fc10000
 
 1) "transfer(address,uint256)"
-0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 # arb contract
 10000000000000000 [1e16]
 
 # Second calldata
@@ -235,3 +235,5 @@ Message Hash:            870f0b85c95ffc9657a8ba0b4fbdc43d4cca1ed8400290ab97b19b5
 Safe Transaction Hash:   de604d0d4e6cdb1cf39e8ff1b8c3ece230c2ec921b2538d6bbdb9cae54534c06
 Verify the above value as the Safe Tx Hash when signing the message from the ledger.
 ```
+
+`Result-> approved`
